@@ -1,14 +1,25 @@
 myapp.config(['$routeProvider',function($routeProvider){
 $routeProvider
-.when('/',{
+
+.when('/admin',{
     templateUrl:'views/loginview.html',
     controller:'surveycontroller',
     controllerAs:'survey'
 })
-.when('/posts',{
+
+.when('/:postId',{
+    templateUrl:'views/viewpost.html',
+    controller:'surveycontroller',
+    controllerAs:'post'
+
+})
+
+.when('/',{
     templateUrl:'views/viewposts.html',
     controller:'postcontroller',
-    controllerAS:'posting'
+    controllerAs:'survey'
 })
+
+
 
 }])

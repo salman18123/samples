@@ -39,4 +39,13 @@ route.post('/posts',(req,res)=>{
         res.send(err)
     })
 })
+route.get('/:postid',(req,res)=>{
+    posts.findById(req.params.postid)
+    .then((post)=>{
+        res.send(post)
+    })
+    .catch((err)=>{
+        res.send({error:err})
+    })
+})
 exports=module.exports=route
