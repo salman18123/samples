@@ -17,6 +17,11 @@ $routeProvider
     controller:'createcontroller',
     controllerAs:'newpost'
 })
+.when('/:postId/edit',{
+    templateUrl:'views/editpost.html',
+    controller:'editpostcontroller',
+    controllerAs:'editpost'
+})
 .when('/:postId',{
     templateUrl:'views/viewpost.html',
     controller:'surveycontroller',

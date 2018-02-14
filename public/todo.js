@@ -76,3 +76,33 @@ myapp.controller('createcontroller',['$location','$routeParams','$http',function
         })
     }
 }])
+myapp.controller('editpostcontroller',['$location','$routeParams','$http',function($location,$routeParams,$http){
+    var main=this;
+    this.postid=$routeParams.postId
+    this.getthispost=function(){
+        $http.get('api/'+main.postid)
+        .then((response)=>{
+            console.log(response)
+            main.data=response.data.data,
+            main.heading=response.data.heading
+        })
+        .catch((err)=>{
+            console.log(response)
+        })
+
+    }
+    this.getthispost()
+    this.editingpost=function(){
+        var mydata={
+            data:main.data,
+            heading:main.heading
+        }
+        $http.put('/api/'+main.postid,mydata)
+        .then((response)=>{
+            console.log(response)
+        })
+        .catch((err)=>{
+            console.log(response)
+        })
+    }
+}])

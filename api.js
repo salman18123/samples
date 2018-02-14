@@ -48,4 +48,17 @@ route.get('/:postid',(req,res)=>{
         res.send({error:err})
     })
 })
+route.put('/:postid',(req,res)=>{
+    posts.update(req.body,{
+        where:{
+            id:req.params.postid
+        }
+    })
+    .then((post)=>{
+        res.send(post)
+    })
+    .catch((err)=>{
+        res.send(err)
+    })
+})
 exports=module.exports=route
