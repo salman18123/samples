@@ -7,17 +7,21 @@ $routeProvider
     controllerAs:'survey'
 })
 
+.when('/',{
+    templateUrl:'views/viewposts.html',
+    controller:'postcontroller',
+    controllerAs:'survey'
+})
+.when('/createpost',{
+    templateUrl:'views/createpost.html',
+    controller:'createcontroller',
+    controllerAs:'newpost'
+})
 .when('/:postId',{
     templateUrl:'views/viewpost.html',
     controller:'surveycontroller',
     controllerAs:'post'
 
-})
-
-.when('/',{
-    templateUrl:'views/viewposts.html',
-    controller:'postcontroller',
-    controllerAs:'survey'
 })
 
 

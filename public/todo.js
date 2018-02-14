@@ -60,3 +60,19 @@ myapp.controller('surveycontroller',['$location','$routeParams','$http',function
     }
     this.getpost()
 }])
+myapp.controller('createcontroller',['$location','$routeParams','$http',function($location,$routeParams,$http){
+    var main=this;
+    this.saving=function(){
+        var mydata={
+            heading:main.heading,
+            data:main.data
+        }
+        $http.post('/api/posts',mydata)
+        .then((response)=>{
+            console.log(response)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+}])
