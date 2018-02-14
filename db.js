@@ -19,14 +19,14 @@ db=new Sequelize('survey','survey','survey',{
 })
 }
 const posts=db.define('posts',{
-    data:Sequelize.STRING,
-    heading:Sequelize.STRING
+    data:Sequelize.DataTypes.STRING,
+    heading:Sequelize.DataTypes.STRING
     
 
 })
 const users=db.define('users',{
-    email:Sequelize.STRING,
-    password:Sequelize.STRING
+    email:Sequelize.DataTypes.STRING,
+    password:Sequelize.DataTypes.STRING
 })
 db.sync()
 .then(()=>{
