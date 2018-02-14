@@ -19,8 +19,9 @@ db=new Sequelize('survey','survey','survey',{
 })
 }
 const posts=db.define('posts',{
-    data:Sequelize.DataTypes.STRING,
-    heading:Sequelize.DataTypes.TEXT
+    data:Sequelize.DataTypes.TEXT,
+    heading:Sequelize.DataTypes.STRING,
+    
     
 
 })
