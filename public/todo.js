@@ -45,6 +45,7 @@ myapp.controller('postcontroller',['$location','$http',function($location,$http)
 myapp.controller('surveycontroller',['$location','$routeParams','$http',function($location,$routeParams,$http){
     var main=this;
     this.test="hello"
+    this.complete=""
     console.log(this.test)
     this.post=$routeParams.postId
     console.log(this.post)
@@ -52,6 +53,7 @@ myapp.controller('surveycontroller',['$location','$routeParams','$http',function
         $http.get('/api/'+ main.post)
         .then((response)=>{
             console.log(response)
+            main.complete=response.data
 
         })
         .catch((err)=>{
@@ -69,7 +71,8 @@ myapp.controller('createcontroller',['$location','$routeParams','$http',function
             para2:main.para2,
             para3:main.para3,
             para4:main.para4,
-            para5:main.para5
+            para5:main.para5,
+            para6:main.para6
         }
         $http.post('/api/posts',mydata)
         .then((response)=>{
@@ -92,7 +95,8 @@ myapp.controller('editpostcontroller',['$location','$routeParams','$http',functi
             main.para2=response.data.para2,
             main.para3=response.data.para3,
             main.para4=response.data.para4,
-            main.para5=response.data.para5
+            main.para5=response.data.para5,
+            main.para6=response.data.para6
         })
         .catch((err)=>{
             console.log(response)
@@ -107,7 +111,8 @@ myapp.controller('editpostcontroller',['$location','$routeParams','$http',functi
             para2:main.para2,
             para3:main.para3,
             para4:main.para4,
-            para5:main.para5
+            para5:main.para5,
+            para6:main.para6
         }
         $http.put('/api/'+main.postid,mydata)
         .then((response)=>{
