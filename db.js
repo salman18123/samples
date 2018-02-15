@@ -35,7 +35,7 @@ const users=db.define('users',{
     email:Sequelize.DataTypes.STRING,
     password:Sequelize.DataTypes.STRING
 })
-db.sync({force:true})
+db.sync()
 .then(()=>{
     console.log("db started")
 })
