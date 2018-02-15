@@ -1,4 +1,5 @@
 const Sequelize=require('sequelize')
+
 var db;
 if(process.env.DATABASE_URL){
 db=new Sequelize(process.env.DATABASE_URL,{
@@ -18,6 +19,7 @@ db=new Sequelize('survey','survey','survey',{
    
 })
 }
+
 const posts=db.define('posts',{
 
     data:Sequelize.DataTypes.TEXT,
@@ -32,9 +34,14 @@ const posts=db.define('posts',{
 
 })
 const users=db.define('users',{
-    email:Sequelize.DataTypes.STRING,
+    email:{
+    type:Sequelize.DataTypes.STRING,
+      unique:true
+    },
     password:Sequelize.DataTypes.STRING
 })
+
+
 db.sync()
 .then(()=>{
     console.log("db started")

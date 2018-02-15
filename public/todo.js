@@ -1,5 +1,5 @@
 var myapp=angular.module('surveyapp',['ngRoute']);
-myapp.controller('surveycontroller',['$location','$http',function($location,$http){
+myapp.controller('surveyscontroller',['$location','$http','$rootScope',function($location,$http,$rootScope){
     var main=this;
     this.data="me";
     this.clicking=function(){
@@ -7,10 +7,18 @@ myapp.controller('surveycontroller',['$location','$http',function($location,$htt
             email:main.email,
             password:main.password
         }
+        console.log("hello")
         $http.post('/api/login',mydata)
         .then((response)=>{
             console.log(response)
-            $location.path('/posts')
+            if(response.data.token){
+                $rootScope.loggedin=true
+            }
+            else{
+                $rootScope.loggedin=false  
+            }
+
+            
 
         })
         .catch((err)=>{

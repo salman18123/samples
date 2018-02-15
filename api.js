@@ -1,9 +1,30 @@
 const route=require('express').Router()
 const posts=require('./db').posts
 const users=require('./db').users
+const jwt=require('jsonwebtoken')
 
 route.post('/login',(req,res)=>{
-    res.send(req.body.email+" "+req.body.password)
+    users.findOne({
+        where:{
+            email:req.body.email
+        }
+    })
+    .then((users)=>{
+        if(!users){
+            res.send({msg:"not a valid user"})
+        }
+        
+        console.log(users.password)
+        if(req.body.password!==users.password){
+            res.send({error:"incorrect password"})
+        }
+        res.send({user:users,token:jwt.sign({data:users},'secret',{expiresIn:24*24*60*7})})
+    })
+    .catch((err)=>{
+        res.send({error:"no such user exists"})
+    })
+
+    
 
 })
 route.post('/register',(req,res)=>{

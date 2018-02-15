@@ -3,7 +3,7 @@ $routeProvider
 
 .when('/admin',{
     templateUrl:'views/loginview.html',
-    controller:'surveycontroller',
+    controller:'surveyscontroller',
     controllerAs:'survey'
 })
 
@@ -13,6 +13,13 @@ $routeProvider
     controllerAs:'survey'
 })
 .when('/createpost',{
+    resolve:{
+        "check":function($location,$rootScope){
+            if(!$rootScope.loggedin){
+                $location.path('/admin')
+            }
+        }
+    },
     templateUrl:'views/createpost.html',
     controller:'createcontroller',
     controllerAs:'newpost'
