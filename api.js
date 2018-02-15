@@ -28,10 +28,7 @@ route.get('/posts',(req,res)=>{
     })
 })
 route.post('/posts',(req,res)=>{
-    posts.create({
-        data:req.body.data,
-        heading:req.body.heading
-    })
+    posts.create(req.body)
     .then((post)=>{
         res.send(post)
     })

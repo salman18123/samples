@@ -65,7 +65,11 @@ myapp.controller('createcontroller',['$location','$routeParams','$http',function
     this.saving=function(){
         var mydata={
             heading:main.heading,
-            data:main.data
+            data:main.data,
+            para2:main.para2,
+            para3:main.para3,
+            para4:main.para4,
+            para5:main.para5
         }
         $http.post('/api/posts',mydata)
         .then((response)=>{
@@ -84,7 +88,11 @@ myapp.controller('editpostcontroller',['$location','$routeParams','$http',functi
         .then((response)=>{
             console.log(response)
             main.data=response.data.data,
-            main.heading=response.data.heading
+            main.heading=response.data.heading,
+            main.para2=response.data.para2,
+            main.para3=response.data.para3,
+            main.para4=response.data.para4,
+            main.para5=response.data.para5
         })
         .catch((err)=>{
             console.log(response)
@@ -95,7 +103,11 @@ myapp.controller('editpostcontroller',['$location','$routeParams','$http',functi
     this.editingpost=function(){
         var mydata={
             data:main.data,
-            heading:main.heading
+            heading:main.heading,
+            para2:main.para2,
+            para3:main.para3,
+            para4:main.para4,
+            para5:main.para5
         }
         $http.put('/api/'+main.postid,mydata)
         .then((response)=>{
