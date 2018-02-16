@@ -13,6 +13,11 @@ $routeProvider
     controller:'surveyscontroller',
     controllerAs:'survey'
 })
+.when('/register',{
+    templateUrl:'views/createuser.html',
+    controller:'newusercontroller',
+    controllerAs:'newuser'
+})
 .when('/adminhome',{
     resolve:{
         "check":function($location,$rootScope,surveyservice){
@@ -33,8 +38,8 @@ $routeProvider
 })
 .when('/createpost',{
     resolve:{
-        "check":function($location,$rootScope){
-            if(!$rootScope.loggedin){
+        "check":function($location,surveyservice){
+            if(surveyservice.loggedin.x){
                 $location.path('/admin')
             }
         }

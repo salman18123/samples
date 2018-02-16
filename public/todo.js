@@ -144,3 +144,21 @@ myapp.controller('homecontroller',['$location','$http','$routeParams','surveyser
         $location.path('/admin')
     }
 }])
+myapp.controller('newusercontroller',['$location','$http','$routeParams','surveyservice',function($location,$http,$routeParams,surveyservice){
+    var main=this;
+    this.clicking=function(){
+        var mydata={
+            email:main.email,
+            password:main.password
+        }
+        $http.post('/api/register',mydata)
+        .then((response)=>{
+            console.log(response)
+            $location.path('/admin')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        
+    }
+}])
