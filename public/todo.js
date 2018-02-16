@@ -143,6 +143,43 @@ myapp.controller('homecontroller',['$location','$http','$routeParams','surveyser
         surveyservice.loggedin.x=false
         $location.path('/admin')
     }
+    this.tab = 1;
+    
+        this.setTab = function(newTab){
+          main.tab = newTab;
+        };
+        this.tabledata="";
+    
+        this.isSet = function(tabNum){
+          return main.tab === tabNum;
+        };
+        this.getdata=function(){
+            $http.get('/api/posts')
+            .then((response)=>{
+                console.log(response)
+                main.tabledata=response.data
+
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+        this.getdata()
+        this.editing=function(index){
+            $location.path('/'+index+'/edit')
+        }
+
+        this.deleting=function(index){
+            $http.delete('api/'+index+'/delete')
+            .then((response)=>{
+                console.log(response)
+                main.tabledata.splice(index,1)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+
 }])
 myapp.controller('newusercontroller',['$location','$http','$routeParams','surveyservice',function($location,$http,$routeParams,surveyservice){
     var main=this;

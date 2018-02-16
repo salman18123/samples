@@ -79,4 +79,17 @@ route.put('/:postid',(req,res)=>{
         res.send(err)
     })
 })
+route.delete('/:postid/delete',(req,res)=>{
+    posts.destroy({
+        where:{
+            id:req.params.postid
+        }
+    })
+    .then((data)=>{
+        res.send({msg:"deleted item"})
+    })
+    .catch((err)=>{
+        res.send({error:err})
+    })
+})
 exports=module.exports=route

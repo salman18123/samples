@@ -1,7 +1,53 @@
 <div class="container container-fluid">
     <div class="card">
         <h6 class="text-center" style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif">Welcome Admin</h6>
-        <button class="btn btn-primary" ng-click="home.logout()">Logout</button>
+
+
+        
+            <div class="row">
+                <div class="col-md-2">
+                    <ul style="display: block" class="nav nav-pills nav-stacked">
+                     <li ng-class="{ active: home.isSet(1) }">
+                        <a href ng-click="home.setTab(1)">Home</a>
+                     </li>
+                     <li ng-class="{ active: home.isSet(2) }">
+                        <a href ng-click="home.setTab(2)">Edit Posts</a>
+                     </li>
+                     <li ng-class="{ active: home.isSet(3) }">
+                        <a href ng-href="#/createpost">CreatePosts</a>
+                     </li>
+                   </ul>
+                </div>
+              <div class="col-md-8">
+                    <div class="jumbotron">
+                     <div ng-show="home.isSet(1)">
+                        <h1>Home page</h1>
+                        <p>Welcome to the website!</p>
+                        <p><a class="btn btn-primary btn-lg" 			role="button">Learn more</a></p>
+                      </div>
+                      <div ng-show="home.isSet(2)">
+                    <h1>Posts Data</h1>
+                    <div>
+                        <table id="customers" border="1" cellspacing="10" cellpadding="10">
+                            <tr>
+                              <th>Name</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
+                            </tr>
+                            <tr ng-repeat="array in home.tabledata" style="background-color:white">
+                              <th style="background-color:white;color:black">{{array.heading}}</th>
+                              <th style="background-color:white" class="text-center"><button class="btn btn-primary" style="background-color:white" ng-click="home.editing(array.id)">Edit</button></th>
+                              <th style="background-color:white" class="text-center"><button class="btn btn-primary" ng-click="home.deleting(array.id)">Delete</button></th>
+                            </tr>
+                          </table>
+                    </div>
+                   </div>
+                  
+                </div>
+            </div>
+          
+
+        
 
 
     </div>

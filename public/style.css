@@ -167,3 +167,48 @@ hr{
 .forgot-password:focus{
     color: rgb(12, 97, 33);
 }
+
+@import "compass/css3";
+
+body {
+  margin: 15px;
+}
+
+/* text recolor */
+h1, p, a {
+  color: #4DC9C9 !important;
+}
+
+/* button recolor */
+.nav-pills > li.active > a, .btn-primary {
+  background-color: #6C6C6C !important;
+  
+  border-color: #6C6C6C !important;
+  border-radius: 25px; 
+}
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
