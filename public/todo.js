@@ -1,7 +1,8 @@
-var myapp=angular.module('surveyapp',['ngRoute']);
-myapp.controller('surveyscontroller',['$location','$http','$rootScope',function($location,$http,$rootScope){
+var myapp=angular.module('surveyapp',['ngRoute','ngStorage']);
+myapp.controller('surveyscontroller',['$location','$http','$rootScope','$window','$sessionStorage','surveyservice',function($location,$http,$rootScope,$window,$sessionStorage,surveyservice){
     var main=this;
     this.data="me";
+    
     this.clicking=function(){
         var mydata={
             email:main.email,
@@ -12,11 +13,15 @@ myapp.controller('surveyscontroller',['$location','$http','$rootScope',function(
         .then((response)=>{
             console.log(response)
             if(response.data.token){
-                $rootScope.loggedin=true
+            surveyservice.loggedin.x=true
+                
+                
+                
+                console.log(surveyservice.loggedin.x)
+                $location.path('/adminhome')
+
             }
-            else{
-                $rootScope.loggedin=false  
-            }
+           
 
             
 
@@ -129,5 +134,13 @@ myapp.controller('editpostcontroller',['$location','$routeParams','$http',functi
         .catch((err)=>{
             console.log(response)
         })
+    }
+}])
+myapp.controller('homecontroller',['$location','$http','$routeParams','surveyservice',function($location,$http,$routeParams,surveyservice){
+    var main=this;
+    this.data="hello"
+    this.logout=function(){
+        surveyservice.loggedin.x=false
+        $location.path('/admin')
     }
 }])

@@ -2,9 +2,28 @@ myapp.config(['$routeProvider',function($routeProvider){
 $routeProvider
 
 .when('/admin',{
+    resolve:{
+        "check":function($location,$rootScope,surveyservice){
+            if(surveyservice.loggedin.x){
+                $location.path('/adminhome')
+            }
+        }
+    },
     templateUrl:'views/loginview.html',
     controller:'surveyscontroller',
     controllerAs:'survey'
+})
+.when('/adminhome',{
+    resolve:{
+        "check":function($location,$rootScope,surveyservice){
+            if(!surveyservice.loggedin.x){
+                $location.path('/admin')
+            }
+        }
+    },
+    templateUrl:'views/adminhome.html',
+    controller:'homecontroller',
+    controllerAs:'home'
 })
 
 .when('/',{
