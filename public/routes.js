@@ -39,7 +39,7 @@ $routeProvider
 .when('/createpost',{
     resolve:{
         "check":function($location,surveyservice){
-            if(surveyservice.loggedin.x){
+            if(!surveyservice.loggedin.x){
                 $location.path('/admin')
             }
         }
